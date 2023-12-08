@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side 10</title>
+    <style>
+        .ledetittel, .favoritt {
+            display: inline-block;
+        }
+
+        .favoritt {
+            margin-left: 30px;
+            font-weight: bold;
+            color: rgb(163, 163, 163);
+        }
+    </style>
+</head>
+<body>
+
+    <p><span class="ledetittel">Slalom</span><span id="favoritt1" class="favoritt"></span></p>
+    <p><span class="ledetittel">Fotball</span><span id="favoritt2" class="favoritt"></span></p>
+    <p><span class="ledetittel">Formel 1</span><span id="favoritt3" class="favoritt"></span></p>
+    
+    <script>
+        // elements er array fra verdier over der du plasserer tekst
+        const elements = ['favoritt1', 'favoritt2','favoritt3'];
+        let index = 0;
+        let interval = 1500; // Initial interval
+
+        function updateContent() {
+            elements.forEach((element, i) => {
+                // Denne kan forandres, men behold som to verdier
+                const tekst = (i === index) ? 'Favoritt' : '';
+                document.getElementById(element).innerText = tekst + String(interval);
+            });
+
+            index = (index + 1) % elements.length;
+
+            // Dette er interval kjøringer etter første loop
+            interval = 4000;
+
+            // Set the next timeout with the updated interval
+            setTimeout(updateContent, interval);
+        }
+
+        // Start the initial timeout
+        setTimeout(updateContent, interval);
+    </script>
+
+</body>
+</html>
