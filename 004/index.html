@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side 10</title>
+    <style>
+        .ledetittel, .favoritt {
+            display: inline-block;
+            font-weight: bold;
+            color: green;
+        }
+
+        .favoritt {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <p><span class="ledetittel">1</span><span id="favoritt1" class="favoritt"></span></p>
+    <p><span class="ledetittel">2</span><span id="favoritt2" class="favoritt"></span></p>
+    
+    <script>
+        const elements = ['favoritt1', 'favoritt2'];
+        let index = 0;
+        let interval = 1000; // Initial interval
+
+        function updateContent() {
+            elements.forEach((element, i) => {
+                const text = (i === index) ? 'Favorite' : '';
+                document.getElementById(element).innerText = text + String(interval);
+            });
+
+            index = (index + 1) % elements.length;
+
+            // Update the interval after the first run
+            interval = (interval === 1000) ? 6000 : interval;
+
+            // Set the next timeout with the updated interval
+            setTimeout(updateContent, interval);
+        }
+
+        // Start the initial timeout
+        setTimeout(updateContent, interval);
+    </script>
+
+</body>
+</html>
